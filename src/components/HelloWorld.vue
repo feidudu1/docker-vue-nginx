@@ -43,12 +43,12 @@ export default {
       params: {}
     }).then(
       res => {
-        localStorage.set('hi', res)
+        localStorage.setItem('hi', res)
         // console.log(res);
       }
     ).catch(
       error => {
-        localStorage.set('err', error)
+        localStorage.setItem('err', error)
           // console.log(error);
       }
     )
