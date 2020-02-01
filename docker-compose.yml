@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    build: ./
+    image: vuedemoimage
+    container_name: vueclicontainer
+    ports:
+      - "3000:80"
+  nodejs:
+    build: vuenode
+    image: nodeimage
+    container_name: nodecontainer
+    ports:
+      - "5000:8080"
