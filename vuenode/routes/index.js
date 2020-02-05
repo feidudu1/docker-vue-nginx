@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var ctMysqlData = require('../controller/getMysqldata');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -12,5 +13,6 @@ router.get('/json', function(req, res) {
     data: 'this is message from node container'
   })
 });
+router.get('/getMysqlData', ctMysqlData.getMysql1);
 
 module.exports = router;

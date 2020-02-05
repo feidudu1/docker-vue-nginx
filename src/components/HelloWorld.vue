@@ -52,6 +52,20 @@ export default {
           // console.log(error);
       }
     )
+
+    axios.get('/api/getMysqlData', {
+      params: {}
+    }).then(
+      res => {
+        localStorage.setItem('mysql', res)
+      }
+    ).catch(
+      error => {
+        localStorage.setItem('mysql', error)
+      }
+    )
+
+
   }
 }
 </script>
