@@ -4,11 +4,44 @@ services:
     build: ./
     image: vuedemoimage
     container_name: vueclicontainer
+    restart: unless-stopped
+    depends_on:
+      - "db"
     ports:
       - "3000:80"
+    networks:
+      - app-network
   nodejs:
     build: vuenode
     image: nodeimage
     container_name: nodecontainer
+    depends_on:
+      - "db"
     ports:
       - "5000:8080"
+    restart: unless-stopped
+    networks:
+      - app-network
+  db:
+    image: "mysql:5.7.15"
+    container_name: mysqlcontainer
+    environment:
+      MYSQL_ROOT_PASSWORD: '123456'
+      MYSQL_DATABASE: 'vueclidemo'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: '123456'
+      MYSQL_PORT: '3306'
+      # MYSQL_HOST: "localhost"
+      # MYSQL_LOG_CONSOLE: "true"
+    volumes:
+      - "./mysqlDb/db:/var/lib/mysql"
+      - "./mysqlDb/conf/my.cnf:/etc/my.cnf"
+      - "./mysqlDb/init:/docker-entrypoint-initdb.d/"
+    restart: always
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
