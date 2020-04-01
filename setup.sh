@@ -1,4 +1,3 @@
-image_version=`data + %Y%m%d%H%M`;
 docker-compose stop || true;
 docker-compose rm || true;
 docker-compose build;

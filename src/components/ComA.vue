@@ -1,6 +1,8 @@
 <template>
-  <div class="hello">
-    this is hello
+  <div class="A">
+    <div @click="item = 'a'" :class="{active: item==='a'}">a</div>
+    <div @click="item = 'b'" :class="{active: item==='b'}">b</div>
+    <div @click="item = 'c'" :class="{active: item==='c'}">c</div>
   </div>
 </template>
 
@@ -8,9 +10,11 @@
 import axios from 'axios';
 
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  name: 'ComA',
+  data: function () {
+    return {
+      item: 'a'
+    }
   },
   created: () => {
 
@@ -21,6 +25,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.active {
+  color: red;
+  font-size: 30px;
+}
 h3 {
   margin: 40px 0 0;
 }
